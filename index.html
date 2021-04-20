@@ -1,42 +1,22 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel='stylesheet' href='/style.css'> -->
-    <title>Home page</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Home Page</title>
 </head>
 <body>
-    <header>
-        <div> View Highscores</div>
-        <div id="timer"> Time Remaining: </div>  
-    </header>
-    <main>
-        <div>
-            <h2 class="questions"> Code Quiz Challenge </h2>
-            <p class="directions"> The goal of this challenge is to answer ALL the code related questions before the time runs out! Oh, did we mention that for every wrong answer you get time deducted?! Good Luck!</p>
+    <div class="container">
+        <div id="home" class="flex-column flex-center">
+            <h1>Code Trivia Challenge</h1>
+            <p>The goal of this challenge is to answer ALL the code related questions before the time runs out! Oh, did we mention that for every wrong answer you get time deducted?! Good Luck!</p>
+            <a href="/game.html" class="btn">Start Quiz</a>
+            <a href="/highsores.html" id="highscore-btn" class="btn">View HighScores!</a>
         </div>
-        <div class="start">
-            <button id="startbutton">Start Quiz</button>
-        </div>
-        <ol class="mtplchoice">
-            <li class="box" id="answer-one"></li>
-            <li class="box" id="answer-two"></li>
-            <li class="box" id="answer-three"></li>
-            <li class="box" id="answer-four"></li>
-        </ol>
-        <div>
-            <h2>All Done!</h2>
-        <p class="finalscore"> Your final score is: </p> 
-        <!-- Something would have to go here to insert score from java  -->
-        <form id="submit-initials">
-            <label for="initials">Enter initials: </label>
-            <input type="text" name="initials" id="initials"/>
-        </form>
-            
-        </div>
-    </main>
-    <script src="/script.js"></script>
+    </div>
+    
 </body>
 </html>
