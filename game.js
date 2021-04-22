@@ -54,7 +54,7 @@ let questions = [
 
 const SCORE_POINTS = 100;
 const MAX_QUESTIONS = 5;
-let countdown = 60;
+let countDown = 60;
 
 var startGame = function () {
     questionCounter = 0;
@@ -64,22 +64,18 @@ var startGame = function () {
 }
 
 var countdown = function () {
-    var timeLeft = 75;
-    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    var timeInterval = setInterval(function () {
-      // As long as the `timeLeft` is greater than 1
-      if (timeLeft > 1) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
-        timerEl.textContent = "Timer: " + timeLeft;
-        // Decrement `timeLeft` by 1
-        timeLeft--;
+    let timeInterval = setInterval(function () {
+      if (countDown > 1) {
+        timeLeft.textContent = "Timer: " + countDown;
+        countDown--;
       } else {
-        // Once `timeLeft` gets to 0, set `timerEl` to 'Time is up!'
-        timerEl.textContent = 'Time is up!';
-        // Use `clearInterval()` to stop the timer
+        timeLeft.textContent = "Time : " + countDown;
+        countDown--;
         clearInterval(timeInterval);
+        return window.location.assign("/end.html");
         }
     }, 1000);
+}
 
 var getNewQuestion = function() {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
@@ -137,5 +133,5 @@ incrementScore = function(num) {
     scoreText.innerText = score;
 }
 
-countdown(); 
-startGame(); 
+countdown() 
+startGame()
