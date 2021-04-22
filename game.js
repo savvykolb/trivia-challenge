@@ -51,72 +51,68 @@ let questions = [
         answer: 4
     }
 ]
-
-const SCORE_POINTS = 100;
+const SCORE_POINTS = 25; 
 const MAX_QUESTIONS = 5;
-let countDown = 60;
+let countDown = 60; 
 
-var startGame = function () {
-    questionCounter = 0;
-    score = 0;
-    availableQuestions = [...questions],
-    getNewQuestion();
+startGame = () => {
+    questionCounter = 0; 
+    score = 0; 
+    availableQuestions = [...questions]; 
+    getNewQuestions(); 
 }
 
-var countdown = function () {
+function countdown() {
     let timeInterval = setInterval(function () {
       if (countDown > 1) {
-        timeLeft.textContent = "Timer: " + countDown;
+        timeLeft.textContent = "Timer : " + countDown;
         countDown--;
       } else {
-        timeLeft.textContent = "Time : " + countDown;
-        countDown--;
+        timeLeft.textContent = 'You did not beat the clock!!!';
         clearInterval(timeInterval);
-        return window.location.assign("/end.html");
+        return window.location.assign("./end.html");
         }
     }, 1000);
 }
 
-var getNewQuestion = function() {
+var getNewQuestions = function() {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentScore', score);
+        localStorage.setItem("mostRecentScore", score)
 
-        return window.location.assign('/end.html');
+        return window.location.assign("./end.html")
     }
 
-    // question1/5, 2/5, 3/5, etc 
     questionCounter++;
 
-    // Keeps track of what question we are on and provides its text 
-    const questionsIndex = Math.floor(Math.random() = availableQuestions.length);
-    currentQuestion = availableQuestions [questionsIndex];
-    question.innerText = currentQuestion.question;
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionsIndex];
+    question.innerText = currentQuestion.question; 
 
     choices.forEach(function(choice) {
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion['choice' + number];
+        const number = choice.dataset["number"];
+        choice.innerText = currentQuestion["choice" + number]; 
     })
 
-    availableQuestions.splice(questionIndex,1);
+    availableQuestions.splice(questionsIndex, 1);
 
-    acceptingAnswers = true;
+    acceptingAnswer = true; 
 }
 
 choices.forEach(function(choice) {
-    choice.addEventListener('click', function(event) {
+    choice.addEventListener("click", function(e) {
         if(!acceptingAnswer) return;
         
         acceptingAnswer = false; 
-        const selectedChoice = event.target; 
-        const selectedAnswer = selectedChoice.dataset['number']; 
+        const selectedChoice = e.target;
+        const selectedAnswer = selectedChoice.dataset["number"]; 
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+        let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
-        if(classToApply === 'correct') {
+        if(classToApply === "correct") {
             incrementScore(SCORE_POINTS)
         } else {
             countDown-=10;
-            timeLeft.textContent = 'Timer : ' + countDown;
+            timeLeft.textContent = "Timer : " + countDown;
         }
 
         selectedChoice.parentElement.classList.add(classToApply);
@@ -133,5 +129,5 @@ incrementScore = function(num) {
     scoreText.innerText = score;
 }
 
-countdown() 
-startGame()
+countdown(); 
+startGame(); 
