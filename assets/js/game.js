@@ -70,7 +70,7 @@ function countdown() {
       } else {
         timeLeft.textContent = 'You did not beat the clock!!!';
         clearInterval(timeInterval);
-        return window.location.assign("./end.html");
+        return window.location.assign("../html/finalscore.html");
         }
     }, 1000);
 }
@@ -79,7 +79,7 @@ var getNewQuestions = function() {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem("mostRecentScore", score)
 
-        return window.location.assign("./end.html")
+        return window.location.assign("../html/finalscore.html")
     }
 
     questionCounter++;
