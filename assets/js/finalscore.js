@@ -30,5 +30,5 @@ saveHighScore = function(e) {
     highScores.splice(5); 
 
     localStorage.setItem("highScores", JSON.stringify(highScores))
-    window.location.assign("/Users/SavannahK/Desktop/bootcamp/homework/homework4_code_quiz/index.html")
+    window.location.assign("../index.html")
 }
