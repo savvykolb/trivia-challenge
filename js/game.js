@@ -68,7 +68,7 @@ function countdown() {
         timeLeft.textContent = "Timer : " + countDown;
         countDown--;
       } else {
-        timeLeft.textContent = 'You did not beat the clock!!!';
+        alert("You did not beat the clock!!!");
         clearInterval(timeInterval);
         return window.location.assign("../html/finalscore.html");
         }
