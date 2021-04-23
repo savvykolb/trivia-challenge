@@ -37,7 +37,9 @@ body {
     background: linear-gradient(32deg,rgb(241, 75, 75)0%, rgb(224,11,11,1)100%)
 }
 
-/* Heads Up Display  */
+#time-left {
+    font-size: 32px;
+}
 
 #hud {
     display: flex;
