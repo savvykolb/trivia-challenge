@@ -1,7 +1,7 @@
 const question = document.querySelector('#question');
 const choices = Array.from(document.querySelectorAll('.choice-text'));
 const scoreText = document.querySelector('#score');
-const timeLeft = document.querySelector("#time-left");
+const timer = document.querySelector("#timer");
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -53,7 +53,7 @@ let questions = [
 ]
 const SCORE_POINTS = 25; 
 const MAX_QUESTIONS = 5;
-let countDown = 60; 
+let timeLeft = 60; 
 
 startGame = () => {
     questionCounter = 0; 
@@ -64,9 +64,9 @@ startGame = () => {
 
 function countdown() {
     let timeInterval = setInterval(function () {
-      if (countDown > 1) {
-        timeLeft.textContent = "Timer : " + countDown;
-        countDown--;
+      if (timeLeft > 1) {
+        timer.textContent = "Timer : " + timeLeft;
+        timeLeft--;
       } else {
         alert("You did not beat the clock!!!");
         clearInterval(timeInterval);
@@ -111,8 +111,8 @@ choices.forEach(function(choice) {
         if(classToApply === "correct") {
             incrementScore(SCORE_POINTS)
         } else {
-            countDown-=10;
-            timeLeft.textContent = "Timer : " + countDown;
+            timeLeft-=10;
+            timer.textContent = "Timer : " + timeLeft;
         }
 
         selectedChoice.parentElement.classList.add(classToApply);

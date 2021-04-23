@@ -37,8 +37,10 @@ body {
     background: linear-gradient(32deg,rgb(241, 75, 75)0%, rgb(224,11,11,1)100%)
 }
 
-#time-left {
+#timer {
     font-size: 32px;
+    margin-top:220px;
+    text-align: right;
 }
 
 #hud {
@@ -57,6 +59,7 @@ body {
 
 @media screen and (max-width:768px) {
     .choice-container {
-        min-width: 40rem;
+        min-width: 20rem;
     }
+    
 }
