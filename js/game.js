@@ -91,6 +91,7 @@ var getNewQuestions = function() {
 
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionsIndex];
+    question.innerText = currentQuestion.question; 
    
     choices.forEach(function(choice) {
         const number = choice.dataset["number"];
