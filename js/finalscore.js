@@ -3,9 +3,8 @@ const saveScoreBtn = document.querySelector("#save-score-btn")
 const finalScore = document.querySelector("#finalScore")
 const mostRecentScore = localStorage.getItem("mostRecentScore")
 
+// JSON parse allows highscores to be shown from server
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-
-const MAX_HIGH_SCORES = 5; 
 
 finalScore.innerText = mostRecentScore; 
 
@@ -27,8 +26,10 @@ saveHighScore = function(e) {
         return b.score - a.score
     })
 
+    // This adds in our MAX HIGH SCOREs 
     highScores.splice(5); 
 
+    // This allows the data to be saved to the server as a string. When we call it back we use JSON parse 
     localStorage.setItem("highScores", JSON.stringify(highScores));
     window.location.assign("../index.html")
 }

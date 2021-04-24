@@ -3,12 +3,14 @@ const choices = Array.from(document.querySelectorAll('.choice-text'));
 const scoreText = document.querySelector('#score');
 const timer = document.querySelector("#timer");
 
+// Sets everything back to the beginning 
 let currentQuestion = {};
 let acceptingAnswers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
+// My questions 
 let questions = [
     {
         question: 'In what month is Earth closest to the sun?',
@@ -51,7 +53,8 @@ let questions = [
         answer: 4
     }
 ]
-const SCORE_POINTS = 25; 
+
+// sets questions and time 
 const MAX_QUESTIONS = 5;
 let timeLeft = 60; 
 
@@ -62,6 +65,7 @@ startGame = () => {
     getNewQuestions(); 
 }
 
+// timer 
 function countdown() {
     let timeInterval = setInterval(function () {
       if (timeLeft > 1) {
@@ -75,19 +79,19 @@ function countdown() {
     }, 1000);
 }
 
+// this allows us to move question to question. It also sets our final score through the timeLeft based on questions left
 var getNewQuestions = function() {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem("mostRecentScore", score)
-
+        localStorage.setItem("mostRecentScore", timeLeft)
         return window.location.assign("../html/finalscore.html")
     }
 
+    // this counts the order of questions, cues them, and tracks when we are out of questions.
     questionCounter++;
 
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionsIndex];
-    question.innerText = currentQuestion.question; 
-
+   
     choices.forEach(function(choice) {
         const number = choice.dataset["number"];
         choice.innerText = currentQuestion["choice" + number]; 
@@ -98,6 +102,7 @@ var getNewQuestions = function() {
     acceptingAnswer = true; 
 }
 
+// the answers choices and click functions with correct or incorrect. e means event and in this case the event is what happens when clicked. 
 choices.forEach(function(choice) {
     choice.addEventListener("click", function(e) {
         if(!acceptingAnswer) return;
@@ -108,9 +113,7 @@ choices.forEach(function(choice) {
 
         let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
-        if(classToApply === "correct") {
-            incrementScore(SCORE_POINTS)
-        } else {
+        if(classToApply === "incorrect") {
             timeLeft-=10;
             timer.textContent = "Timer : " + timeLeft;
         }
@@ -121,13 +124,9 @@ choices.forEach(function(choice) {
             selectedChoice.parentElement.classList.remove(classToApply);
             getNewQuestions()
         }, 500)
+       
     })
 })
-
-incrementScore = function(num) {
-    score += num;
-    scoreText.innerText = score;
-}
 
 countdown(); 
 startGame(); 
