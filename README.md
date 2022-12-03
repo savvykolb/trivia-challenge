@@ -1,6 +1,6 @@
 # Trivia Challenge
 
-Built with JavaScript
+Built with JavaScript and fun!
 
 [Click here to play my quiz!](https://savvykolb.github.io/trivia-challenge/)
 
